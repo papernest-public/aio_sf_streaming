@@ -46,7 +46,7 @@ class BaseConnector(BaseSalesforceStreaming):
             async with session.post(self.token_url, data=self.credentials) as resp:
                 data = await resp.json()
 
-        assert data["token_type"] == "Bearer"
+        assert data.get("token_type") == "Bearer"
         instance_url = data["instance_url"]
         access_token = data["access_token"]
 
